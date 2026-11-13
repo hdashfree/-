@@ -283,3 +283,59 @@ footer{
   section:not(.hero), .hero{padding:18px}
   .top-nav{gap:12px;overflow:auto}
 }
+
+/* 전체 웹사이트 색상 변경 */
+:root {
+  --bg: #FFFFFF;
+  --panel: #FFFFFF;
+  --panel-strong: #FFFFFF;
+  --text: #202832;
+  --muted: #687482;
+  --line: #E3E8EF;
+  --accent: #A2AEC0;
+  --accent-2: #A2AEC0;
+  --soft: #F5F7FA;
+}
+
+/* 지문 배경과 선 */
+#fingerprint-svg {
+  background: #FFFFFF;
+}
+
+.fingerprint-ring {
+  stroke: #E3E8EF;
+}
+
+.fingerprint-path,
+.fingerprint-path.secondary {
+  stroke: #A2AEC0;
+}
+
+.fingerprint-core {
+  fill: #A2AEC0;
+}
+
+/* 모든 버튼 */
+button {
+  background: #A2AEC0;
+  border-color: #A2AEC0;
+  color: #202832;
+}
+
+/* 표와 그래프 */
+thead {
+  background: #F5F7FA;
+}
+
+.track {
+  background: #E3E8EF;
+}
+
+.fill {
+  background: #A2AEC0;
+}
+
+/* 설명 및 목록 글씨 */
+.lead, #fp-top li {
+  color: #202832;
+}
