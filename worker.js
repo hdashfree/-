@@ -10,7 +10,7 @@ async function handle({id,type,payload}) {
       py=await loadPyodide({indexURL:BASE});
       await py.loadPackage(['numpy','micropip']);
       await py.runPythonAsync("import micropip\nawait micropip.install('openpyxl==3.1.5')");
-      const response=await fetch('./model.py');
+      const response=await fetch('./model.py?v=columnfix1');
       if(!response.ok) throw Error('model.py를 불러올 수 없습니다.');
       await py.runPythonAsync(await response.text());
       postMessage({type:'status',text:'Excel 읽기와 계수 검증 중…'});
@@ -22,9 +22,14 @@ async function handle({id,type,payload}) {
       py.globals.set('sheet_input',payload.sheet);
       py.globals.set('row_input',payload.row||'');
       result=py.runPython('explore(sheet_input, row_input)');
-    } else {
+    } else if(type==='fingerprint') {
+      py.globals.set('fingerprint_code',payload.code);
+      result=py.runPython('fingerprint(fingerprint_code)');
+    } else if(type==='simulate') {
       py.globals.set('scenario_input',JSON.stringify(payload));
       result=py.runPython('simulate(scenario_input)');
+    } else {
+      throw Error('지원하지 않는 작업 유형: '+type);
     }
     postMessage({id,ok:true,result:JSON.parse(result)});
   } catch(error) { postMessage({id,ok:false,error:String(error)}); }

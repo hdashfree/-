@@ -17,7 +17,7 @@ def emit(value):
 
 
 def initialize(raw):
-    global book, codes, names, L, M, V, sheets, valid
+    global book, codes, names, L, M, V, ad, am, sheets, valid
 
     wb = openpyxl.load_workbook(io.BytesIO(bytes(raw)), read_only=True, data_only=True)
     book = {s: list(wb[s].values) for s in wb.sheetnames}
@@ -125,3 +125,30 @@ def simulate(payload):
     return emit({'demand': float(f.sum()), 'production': float(x.sum()),
                  'imports': float(m.sum()), 'valueAdded': float(va.sum()),
                  'multiplier': float(x.sum()/f.sum()), 'rows': result})
+
+
+def fingerprint(column_code):
+    """선택한 산업(열)에 투입된 각 공급 산업(행)의 계수.
+
+    A[i,j]는 j부문 생산 1단위에 투입된 i부문 중간재의 크기를 뜻합니다.
+    표의 합계·요약 행과 9090 등 분석대상 이외의 부문은 제외합니다.
+    """
+    if not valid:
+        raise ValueError('검증된 산업연관표를 먼저 불러오세요.')
+    column_code = str(column_code)
+    if column_code not in codes:
+        raise ValueError('선택한 산업코드를 찾을 수 없습니다: ' + column_code)
+
+    col = codes.index(column_code)
+
+    def one_column(matrix):
+        return {
+            'selected': column_code,
+            'name': names[col],
+            'cells': [
+                {'code': codes[row], 'name': names[row], 'value': float(matrix[row, col])}
+                for row in range(len(codes))
+            ]
+        }
+
+    return emit({'domestic': one_column(ad), 'imported': one_column(am)})

@@ -151,10 +151,9 @@
     try {
       nameEl.textContent = '지문 생성 중…';
       metaEl.textContent = '시트 데이터를 읽는 중입니다.';
-      const [domestic, imported] = await Promise.all([
-        call('explore', { sheet: '국산투입계수(Ad)', row: code }),
-        call('explore', { sheet: '수입투입계수(Am)', row: code })
-      ]);
+      // 기존 explore는 '행' 전체를 읽으므로 지문 데이터에 사용하지 않습니다.
+      // fingerprint 작업은 선택한 산업의 '열'을 읽고 공급 산업들을 행으로 반환합니다.
+      const { domestic, imported } = await call('fingerprint', { code });
       activeCode = code;
       renderFingerprint(domestic, imported);
       const simSector = $('sector');
