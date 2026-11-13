@@ -265,10 +265,10 @@ footer{
   color:var(--muted);
   font-size:.9rem;
 }
-.fingerprint-ring{fill:none;stroke:#c8c0b4;stroke-width:1}
-.fingerprint-path{fill:none;stroke:#1f3340;stroke-linecap:round;stroke-linejoin:round}
-.fingerprint-path.secondary{stroke:#667780}
-.fingerprint-core{fill:#1f3340}
+.fingerprint-ring{fill:none;stroke:#DCE2EA;stroke-width:1}
+.fingerprint-path{fill:none;stroke:#A2AEC0;stroke-linecap:round;stroke-linejoin:round}
+.fingerprint-path.secondary{stroke:#A2AEC0}
+.fingerprint-core{fill:#A2AEC0}
 .fingerprint-label{font-family:inherit;fill:#1d1a16;text-anchor:middle}
 .fingerprint-label.small{font-size:13px;fill:#6a645d;letter-spacing:.08em;text-transform:uppercase}
 .fingerprint-label.main{font-size:30px;font-weight:700;letter-spacing:-.04em}
