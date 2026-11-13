@@ -339,3 +339,54 @@ thead {
 .lead, #fp-top li {
   color: #202832;
 }
+
+/* 산업의 지문 - White & Blue Gray */
+
+/* 지문 전체 배경 */
+#fingerprint-svg {
+  background: #FFFFFF;
+}
+
+/* 가장 바깥쪽 원 */
+.fingerprint-ring {
+  fill: none;
+  stroke: #E8ECF2;
+  stroke-width: 1;
+}
+
+/* 지문의 주요 선 */
+.fingerprint-path {
+  fill: none;
+  stroke: #A2AEC0;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.95;
+}
+
+/* 지문의 보조 선 */
+.fingerprint-path.secondary {
+  stroke: #C9D2DE;
+  opacity: 0.65;
+}
+
+/* 지문 중앙 원 */
+.fingerprint-core {
+  fill: #EDF1F6;
+}
+
+/* 지문 중앙 글씨 */
+.fingerprint-label {
+  fill: #52637A;
+}
+
+.fingerprint-label.small {
+  fill: #8796AB;
+}
+
+.fingerprint-label.main {
+  fill: #52637A;
+}
+
+.fingerprint-label.sub {
+  fill: #8796AB;
+}
